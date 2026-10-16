@@ -30,30 +30,29 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
 
   Future<void> _pickVerificationDocument() async {
     try {
-      final result = await FilePicker.pickFiles(
+      final files = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg'],
-        withData: true,
       );
 
-      if (result != null && result.files.isNotEmpty) {
-        final pickedFile = result.files.first;
-        
+      if (files.isNotEmpty) {
+        final pickedFile = files.first;
+
         setState(() => _statusMessage = 'Uploading ${pickedFile.name}...');
-        
+
         final ok = await widget.controller.uploadVerificationDocument(
           uid: widget.uid,
-          fileBytes: pickedFile.bytes!,
+          fileBytes: await pickedFile.readAsBytes(),
           fileName: pickedFile.name,
         );
 
         if (!mounted) return;
-  
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
               ok ? 'Upload successful!' : 'Upload failed.',
-              style: const TextStyle(color: Colors.white), 
+              style: const TextStyle(color: Colors.white),
             ),
             backgroundColor: ok ? FlockColors.darkGreen : FlockColors.errorRed,
             behavior: SnackBarBehavior.floating,
@@ -61,20 +60,22 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
-            showCloseIcon: true, 
+            showCloseIcon: true,
           ),
-        ); 
-        
+        );
+
         setState(() => _statusMessage = null);
       }
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e'), backgroundColor: FlockColors.errorRed),
+        SnackBar(
+          content: Text('Error: $e'),
+          backgroundColor: FlockColors.errorRed,
+        ),
       );
     }
   }
-
 
   Future<void> _rerollInviteCode() async {
     final ok = await widget.controller.rerollInviteCode(uid: widget.uid);
@@ -407,20 +408,30 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
       },
     );
   }
+
   Widget _getOwnershipStatusWidget(String status) {
     final normalizedStatus = status.toLowerCase().trim();
 
     switch (normalizedStatus) {
       case 'verified':
-        return const Text('Verified', style: TextStyle(color: FlockColors.darkGreen, fontWeight: FontWeight.w600));
+        return const Text(
+          'Verified',
+          style: TextStyle(
+            color: FlockColors.darkGreen,
+            fontWeight: FontWeight.w600,
+          ),
+        );
 
       case 'pending':
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Verification Pending', 
-              style: TextStyle(color: Colors.orange, fontWeight: FontWeight.w600)
+              'Verification Pending',
+              style: TextStyle(
+                color: Colors.orange,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 4),
             const Text(
@@ -432,7 +443,7 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
               onPressed: _pickVerificationDocument,
               icon: const Icon(Icons.upload_file),
               label: const Text('Update Document'),
-              ),
+            ),
           ],
         );
 
@@ -441,8 +452,11 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Verification Rejected', 
-              style: TextStyle(color: FlockColors.errorRed, fontWeight: FontWeight.w700)
+              'Verification Rejected',
+              style: TextStyle(
+                color: FlockColors.errorRed,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 4),
             const Text(
@@ -458,15 +472,17 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
           ],
         );
 
-
       case 'unverified':
       default:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Verification required', 
-              style: TextStyle(color: FlockColors.errorRed, fontWeight: FontWeight.w600)
+              'Verification required',
+              style: TextStyle(
+                color: FlockColors.errorRed,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 4),
             const Text(
@@ -483,6 +499,7 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
         );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -593,9 +610,13 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
                           return _infoRow(
                             label: 'Ownership',
                             value: StreamBuilder<Map<String, dynamic>?>(
-                              stream: widget.controller.ownershipStatusStream(widget.uid),
+                              stream: widget.controller.ownershipStatusStream(
+                                widget.uid,
+                              ),
                               builder: (context, snapshot) {
-                                final status = snapshot.data?['status'] as String? ?? 'unverified';
+                                final status =
+                                    snapshot.data?['status'] as String? ??
+                                    'unverified';
                                 return _getOwnershipStatusWidget(status);
                               },
                             ),
@@ -607,20 +628,24 @@ class _BuildingSettingsScreenState extends State<BuildingSettingsScreen> {
                     ),
                     Card(
                       child: SwitchListTile(
-                        title: const Text('Hide apartment number from other residents'),
+                        title: const Text(
+                          'Hide apartment number from other residents',
+                        ),
                         value: profile.hideApartmentNumber,
                         onChanged: widget.controller.isLoading
                             ? null
                             : (val) async {
-                                final ok = await widget.controller.setHideApartmentNumber(
-                                  uid: widget.uid,
-                                  hide: val,
-                                );
+                                final ok = await widget.controller
+                                    .setHideApartmentNumber(
+                                      uid: widget.uid,
+                                      hide: val,
+                                    );
                                 if (!mounted) return;
                                 setState(() {
                                   _statusMessage = ok
                                       ? (widget.controller.successMessage ?? '')
-                                      : (widget.controller.errorMessage ?? 'Could not update setting.');
+                                      : (widget.controller.errorMessage ??
+                                            'Could not update setting.');
                                   _statusIsError = !ok;
                                 });
                               },

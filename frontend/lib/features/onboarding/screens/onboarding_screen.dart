@@ -174,7 +174,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         if (storedPhone != null && storedPhone.isNotEmpty) {
           if (storedPhone.startsWith('+')) {
             try {
-              final parsed = await PhoneNumber.getRegionInfoFromPhoneNumber(storedPhone);
+              final parsed = await PhoneNumber.getRegionInfoFromPhoneNumber(
+                storedPhone,
+              );
               setState(() {
                 _phoneNumber = parsed;
                 _phoneInputKey = ValueKey(storedPhone);
@@ -231,16 +233,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       _setFlowError(_friendlyError(error));
     }
   }
+
   Future<void> _pickManagementDocument() async {
-    final result = await FilePicker.pickFiles(
+    final files = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg'],
-      withData: true,
     );
 
-    if (result != null && result.files.isNotEmpty) {
+    if (files.isNotEmpty) {
       setState(() {
-        _pickedFile = result.files.first;
+        _pickedFile = files.first;
       });
     }
   }
@@ -927,17 +929,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   showFlags: true,
                   leadingPadding: 12,
                   setSelectorButtonAsPrefixIcon: true,
-                  trailingSpace: false
+                  trailingSpace: false,
                 ),
                 inputDecoration: const InputDecoration(
                   labelText: 'Phone Number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    borderSide: BorderSide(color: FlockColors.darkGreen, width: 1.5),
+                    borderSide: BorderSide(
+                      color: FlockColors.darkGreen,
+                      width: 1.5,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
-                    borderSide: BorderSide(color: FlockColors.darkGreen, width: 1.5),
+                    borderSide: BorderSide(
+                      color: FlockColors.darkGreen,
+                      width: 1.5,
+                    ),
                   ),
                 ),
                 keyboardType: TextInputType.phone,
@@ -1239,11 +1247,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   labelText: 'Phone Number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    borderSide: BorderSide(color: FlockColors.darkGreen, width: 1.5),
+                    borderSide: BorderSide(
+                      color: FlockColors.darkGreen,
+                      width: 1.5,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
-                    borderSide: BorderSide(color: FlockColors.darkGreen, width: 1.5),
+                    borderSide: BorderSide(
+                      color: FlockColors.darkGreen,
+                      width: 1.5,
+                    ),
                   ),
                 ),
                 keyboardType: TextInputType.phone,
@@ -1441,7 +1455,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(
-              color: _pickedFile == null ? AppColors.middleground : FlockColors.darkGreen,
+              color: _pickedFile == null
+                  ? AppColors.middleground
+                  : FlockColors.darkGreen,
               width: 2,
             ),
           ),
@@ -1453,9 +1469,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Column(
                 children: [
                   Icon(
-                    _pickedFile == null ? Icons.cloud_upload : Icons.check_circle,
+                    _pickedFile == null
+                        ? Icons.cloud_upload
+                        : Icons.check_circle,
                     size: 48,
-                    color: _pickedFile == null ? AppColors.middleground : FlockColors.darkGreen,
+                    color: _pickedFile == null
+                        ? AppColors.middleground
+                        : FlockColors.darkGreen,
                   ),
                   const SizedBox(height: 12),
                   Text(
@@ -1495,18 +1515,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         setState(() => _isSyncingStep = true);
 
                         // 2. Execute the service
-                        final success = await VerificationService().uploadVerificationDocument(
-                          uid: widget.user!.uid,
-                          fileBytes: _pickedFile!.bytes!,
-                          fileName: _pickedFile!.name,
-                        );
+                        final success = await VerificationService()
+                            .uploadVerificationDocument(
+                              uid: widget.user!.uid,
+                              fileBytes: await _pickedFile!.readAsBytes(),
+                              fileName: _pickedFile!.name,
+                            );
 
                         if (mounted) {
                           if (success) {
                             _updateFlow(_flow.goTo(10));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Upload failed. Please try again.')),
+                              const SnackBar(
+                                content: Text(
+                                  'Upload failed. Please try again.',
+                                ),
+                              ),
                             );
                           }
                         }
@@ -1517,8 +1542,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: _isSyncingStep 
-                    ? const CircularProgressIndicator(color: Colors.white) 
+                child: _isSyncingStep
+                    ? const CircularProgressIndicator(color: Colors.white)
                     : const Text('Continue'),
               ),
             ),
