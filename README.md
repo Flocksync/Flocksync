@@ -2,6 +2,9 @@
 
 ![Flocksync logo](https://github.com/Flocksync/Flocksync/blob/main/frontend/assets/images/logo-bird.png?raw=true)
 
+<p align="right"><sub>Artwork by <a href="https://github.com/vikkizkiwi">@vikkizkiwi</a></sub></p>
+
+
 <p align="center">
 	[ <a href="https://flocksync.github.io/Flocksync/">Live Demo</a> |
 	<a href="frontend/README.md#installation">Installation</a> |
