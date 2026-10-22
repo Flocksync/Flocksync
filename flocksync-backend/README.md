@@ -5,7 +5,7 @@ This guide explains how to set up the Flocksync backend for development.
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/DataAgent47/Flocksync.git Flocksync
+git clone https://github.com/Flocksync/Flocksync.git Flocksync
 cd Flocksync/flocksync-backend
 npm install
 ```

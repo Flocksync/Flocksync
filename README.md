@@ -6,7 +6,7 @@
 
 
 <p align="center">
-	[ <a href="https://flocksync.github.io/Flocksync/">Live Demo</a> |
+	[ <a href="https://flocksync-dcc08.web.app/">Live Demo</a> |
 	<a href="frontend/README.md#installation">Installation</a> |
 	<a href="https://www.figma.com/design/nzkiU2O97eiKWmJX4Uz2iI/Rental-project?node-id=163-1090&t=1CeewaEjvDEJbp7v-1">Figma Designs</a> ]
 </p>
@@ -42,5 +42,5 @@ Most of the app can be used with just the Flutter frontend. However, the backend
 
 For questions or feedback, please feel free to reach out!
 
-- Create an issue: [Open an issue](https://github.com/DataAgent47/Flocksync/issues)
-- Submit a pull request: [Open a pull request](https://github.com/DataAgent47/Flocksync/pulls)
+- Create an issue: [Open an issue](https://github.com/Flocksync/Flocksync/issues)
+- Submit a pull request: [Open a pull request](https://github.com/Flocksync/Flocksync/pulls)

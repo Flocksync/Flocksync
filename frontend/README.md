@@ -10,7 +10,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/DataAgent47/Flocksync.git
+   git clone https://github.com/Flocksync/Flocksync.git
    cd Flocksync/frontend
    ```
 
