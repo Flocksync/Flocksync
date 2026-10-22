@@ -70,10 +70,5 @@ Use the Firebase Emulator to test Firestore rules locally without needing to dep
 firebase init emulators
 ```
 
-When prompted, select **Firestore Emulator**. Accept the default port (`8080`).
-
-To run locally:
-``` bash
-firebase emulators:start --only firestore
-flutter run --dart-define=USE_EMULATOR=true
+When prompted, select **Firestore Emtrue
 ```
