@@ -30,14 +30,14 @@ environment:
 dependencies:
    flutter:
       sdk: flutter
-   cupertino_icons: ^1.0.8
-   firebase_core: ^4.4.0
-   firebase_auth: ^6.1.4
+   cupertino_icons: ^2.0.0
+   firebase_core: ^5.1.0
+   firebase_auth: ^7.0.1
    google_sign_in: ^7.2.0
 
    # Firebase
-   cloud_firestore: ^6.1.3
-   firebase_storage: ^13.1.0
+   cloud_firestore: ^7.1.0
+   firebase_storage: ^14.0.1
 
    # State management
    provider: ^6.1.0
