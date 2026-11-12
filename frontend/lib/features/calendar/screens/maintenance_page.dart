@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../widgets/calendar.dart';
 import '../widgets/upcoming.dart';
 import 'package:flocksync/core/theme/flock_theme.dart';
@@ -43,7 +43,7 @@ class MaintenancePage extends StatelessWidget {
                               },
                             ),
                             Text(
-                              "FlockSync",
+                              "Flocksync",
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,

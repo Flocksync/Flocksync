@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+// ignore: deprecated_member_use
+import 'package:flutter/material.dart' as legacy_material;
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../../core/theme/flock_theme.dart';
@@ -567,22 +569,22 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                         setSelectorButtonAsPrefixIcon: true,
                         trailingSpace: false,
                       ),
-                      inputDecoration: const InputDecoration(
+                      inputDecoration: const legacy_material.InputDecoration(
                         labelText: 'Phone Number',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                        border: legacy_material.OutlineInputBorder(
+                          borderRadius: legacy_material.BorderRadius.all(
+                            legacy_material.Radius.circular(8),
                           ),
-                          borderSide: BorderSide(
+                          borderSide: legacy_material.BorderSide(
                             color: FlockColors.darkGreen,
                             width: 1.5,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
+                        focusedBorder: legacy_material.OutlineInputBorder(
+                          borderRadius: legacy_material.BorderRadius.all(
+                            legacy_material.Radius.circular(12),
                           ),
-                          borderSide: BorderSide(
+                          borderSide: legacy_material.BorderSide(
                             color: FlockColors.darkGreen,
                             width: 1.5,
                           ),

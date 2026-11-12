@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../models/forum_post.dart';
 import '../../../models/forum_reply.dart';
 import '../../../services/forum_service.dart';

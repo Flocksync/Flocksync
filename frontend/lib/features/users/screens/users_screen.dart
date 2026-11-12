@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flocksync/core/theme/flock_theme.dart';
 import 'package:flocksync/models/building_user.dart';
 import '../../settings/services/settings_firestore_service.dart';

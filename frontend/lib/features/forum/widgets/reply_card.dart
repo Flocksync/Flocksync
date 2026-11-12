@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../models/forum_reply.dart';
 import '../../../core/theme/flock_theme.dart';
 import 'image_grid.dart';

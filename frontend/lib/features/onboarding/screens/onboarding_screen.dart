@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+// ignore: deprecated_member_use
+import 'package:flutter/material.dart' as legacy_material;
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -931,18 +933,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   setSelectorButtonAsPrefixIcon: true,
                   trailingSpace: false,
                 ),
-                inputDecoration: const InputDecoration(
+                inputDecoration: const legacy_material.InputDecoration(
                   labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    borderSide: BorderSide(
+                  border: legacy_material.OutlineInputBorder(
+                    borderRadius: legacy_material.BorderRadius.all(legacy_material.Radius.circular(8)),
+                    borderSide: legacy_material.BorderSide(
                       color: FlockColors.darkGreen,
                       width: 1.5,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    borderSide: BorderSide(
+                  focusedBorder: legacy_material.OutlineInputBorder(
+                    borderRadius: legacy_material.BorderRadius.all(legacy_material.Radius.circular(12)),
+                    borderSide: legacy_material.BorderSide(
                       color: FlockColors.darkGreen,
                       width: 1.5,
                     ),
@@ -1243,18 +1245,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   setSelectorButtonAsPrefixIcon: true,
                   trailingSpace: false,
                 ),
-                inputDecoration: const InputDecoration(
+                inputDecoration: const legacy_material.InputDecoration(
                   labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    borderSide: BorderSide(
+                  border: legacy_material.OutlineInputBorder(
+                    borderRadius: legacy_material.BorderRadius.all(legacy_material.Radius.circular(8)),
+                    borderSide: legacy_material.BorderSide(
                       color: FlockColors.darkGreen,
                       width: 1.5,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    borderSide: BorderSide(
+                  focusedBorder: legacy_material.OutlineInputBorder(
+                    borderRadius: legacy_material.BorderRadius.all(legacy_material.Radius.circular(12)),
+                    borderSide: legacy_material.BorderSide(
                       color: FlockColors.darkGreen,
                       width: 1.5,
                     ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/flock_theme.dart';
 
 /// Small inline badge shown next to a user's name indicating their

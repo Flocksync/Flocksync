@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../../core/theme/flock_theme.dart';
 
 /// Displays a tappable grid of network images.

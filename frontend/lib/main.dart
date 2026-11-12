@@ -1,6 +1,6 @@
 // import 'package:flocksync/models/forum_post.dart';
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:supabase_flutter/supabase_flutter.dart' hide User;
@@ -34,16 +34,16 @@ void main() async {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }
   // ───────────────────────────────────────────────────────────────────────
-  runApp(const FlockSyncApp());
+  runApp(const FlocksyncApp());
 }
 
-class FlockSyncApp extends StatelessWidget {
-  const FlockSyncApp({super.key});
+class FlocksyncApp extends StatelessWidget {
+  const FlocksyncApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FlockSync',
+      title: 'Flocksync',
       debugShowCheckedModeBanner: false,
       theme: flockTheme(),
       home: const _AuthGate(),
@@ -374,9 +374,9 @@ class _DashboardScreen extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          // Secondary text that introduces users to FlockSync.
+          // Secondary text that introduces users to Flocksync.
           const Text(
-            'Navigate FlockSync and see building announcements, upcoming events, and more!',
+            'Navigate Flocksync and see building announcements, upcoming events, and more!',
             style: TextStyle(
               fontSize: 16,
               color: FlockColors.textSecondary,
